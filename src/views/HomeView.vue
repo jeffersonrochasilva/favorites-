@@ -1,18 +1,42 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="home__container">
+      <h1>Lista de usuários</h1>
+      <div class="home__container__usuarios">
+        <div class="home__container__usuarios__card">
+          <img src="" alt="" />
+          <span>hello word</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
+  name: "HomeView",
+  components: {},
+};
+</script>
+
+<style lang="scss" scoped>
+.home {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  &__container{
+    &__usuarios{
+      &__card{
+        width: 350px;
+        height: 200px;
+        border-radius: 5px;
+        background: pink;
+      }
+    }
   }
 }
-</script>
+</style>
