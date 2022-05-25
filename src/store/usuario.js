@@ -22,7 +22,25 @@ export const usuarioStore = defineStore("usuario", {
           sobrenome: "junior",
           idade: "30",
         },
+        {
+          id: 10,
+          nome: "maria",
+          sobrenome: "souza",
+          idade: "25",
+        },
       ],
+      ListaFavoritos: [],
     };
+  },
+  getters: {
+    totalFavoritos: (state) => state.ListaFavoritos.length,
+  },
+  actions: {
+    adicionarFavoritos(item) {
+      const usuarioSelecionado = item;
+      this.ListaFavoritos.push(usuarioSelecionado);
+      console.log("item", item);
+      console.log("usuarios", this.ListaFavoritos);
+    },
   },
 });

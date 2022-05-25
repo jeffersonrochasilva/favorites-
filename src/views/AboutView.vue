@@ -1,15 +1,24 @@
 <template>
   <div class="home">
     <div class="home__container">
-      <h1>Favoritos</h1>
-      <div class="home__container__usuarios">
+      <h1>favoritos</h1>
+      <div class="home__container__favoritos">
         <div
-          class="home__container__usuarios__card"
+          class="home__container__favoritos__usuarios"
           v-for="item in listaPessoas"
           :key="item.id"
         >
-          <!-- <img :src="item.avatar" alt="" /> -->
-          <span>{{ item.last_name }}</span>
+          <div class="home__container__favoritos__usuarios__card">
+            <div class="home__container__favoritos__usuarios__card__icon">
+              <a>
+                <span v-if="true">Favorito</span>
+                <span v-else>Favoritar</span>
+              </a>
+            </div>
+            <span>{{ item.nome }}</span>
+            <span>{{ item.sobrenome }}</span>
+            <span>{{ item.idade }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -17,23 +26,11 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
-// const listaPessoas = [
-//   {
-//     id: 7,
-//     email: "michael.llawund.com",
-//     first_name: "Michael",
-//     last_name: "Lawson",
-//     avatar:
-//       "https://www.google.com/url?sa=i&url=https%3A%2F%2Farita.com.br%2Fportal%2Fpessoa-expansiva-principais-caracteristicas-desta-personalidade%2F&psig=AOvVaw1LmDVxnjrMOff-w_jjY6O2&ust=1653491706001000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjDp-C2-PcCFQAAAAAdAAAAABAV",
-//   },
-// ];
+import { ref, watch } from "vue";
+import { usuarioStore } from "../store/usuario";
 
-const nome = "jefferson rocha da silva ";
-
-const carregarnomes = onMounted(() => {
-  return listaPessoas.value;
-});
+const store = usuarioStore();
+const listaPessoas = store.ListaFavoritos;
 </script>
 
 <style lang="scss" scoped>
@@ -45,12 +42,36 @@ const carregarnomes = onMounted(() => {
   align-items: center;
   flex-direction: column;
   &__container {
-    &__usuarios {
-      &__card {
-        width: 350px;
-        height: 200px;
-        border-radius: 5px;
-        background: pink;
+    &__favoritos {
+      display: flex;
+      &__usuarios {
+        &__card {
+          width: 350px;
+          height: 200px;
+          border-radius: 5px;
+          background: pink;
+          margin: 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          &__icon {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            a {
+              width: 50px;
+              height: 50px;
+              font-size: 10px;
+              border-radius: 50%;
+              background: #fff;
+              text-decoration: none;
+              margin-right: 5px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+        }
       }
     }
   }

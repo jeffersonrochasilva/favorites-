@@ -5,10 +5,22 @@
         <router-link to="/">Home</router-link> |
         <router-link to="/about">Favoritos</router-link>
       </div>
-      <div class="header__container__img">teste</div>
+      <div class="header__container__img">
+        <h3>{{ listaPessoas }}</h3>
+      </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import { computed } from "vue";
+import { usuarioStore } from "../store/usuario";
+
+const store = usuarioStore();
+const listaPessoas = computed(() => {
+  return store.totalFavoritos;
+});
+</script>
 
 <style lang="scss" scoped>
 .header {
@@ -30,6 +42,15 @@
         text-decoration: none;
         // padding: 20px;
       }
+    }
+    &__img {
+      border-radius: 50%;
+      background: #fff;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
